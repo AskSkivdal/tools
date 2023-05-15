@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import os
 from shutil import copyfile as cp
+import stat
 
 
 dir = os.getcwd()
@@ -42,3 +43,5 @@ for i in os.listdir():
             except:
                 print("File not valid")
     cp(binary, f"{bin_dir}/{binary}")
+    st = os.stat(f"{bin_dir}/{binary}")
+    os.chmod(f"{bin_dir}/{binary}", st.st_mode | stat.S_IEXEC)
